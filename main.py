@@ -2,12 +2,8 @@ import sys
 import json
 import simpleaudio as sa
 import numpy as np
-import time
 from ui_window import Ui_MainWindow
-from PyQt6.QtWidgets import QApplication, QFileDialog, QMainWindow
-
-import matplotlib.pyplot as plt
-
+from PyQt6.QtWidgets import QApplication, QMainWindow
 
 # Define the frequency and duration of the beep
 frequency = 500  # Hz
@@ -16,14 +12,10 @@ duration = 50  # ms
 # Generate a numpy array with the beep sound
 sample_rate = 44100  # samples per second
 sample_short = np.concatenate([np.ones(int(sample_rate * duration / 2000)), np.zeros(int(sample_rate * duration / 2000))])
-beep_wave_obj_short = sa.WaveObject(sample_short, 2, 1, sample_rate)
 
 sample_long = np.concatenate([np.ones(int(sample_rate * duration * 3 / 2000)), np.zeros(int(sample_rate * duration * 3 / 2000))])
-beep_wave_obj_long = sa.WaveObject(sample_long, 2, 1, sample_rate)
 
 sample_zero = np.zeros(int(sample_rate * duration * 7))
-beep_wave_obj_zero = sa.WaveObject(sample_zero, 2, 1, sample_rate)
-
 
 with open("morse.json") as morse_json:
     morse = json.load(morse_json)
